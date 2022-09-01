@@ -1,0 +1,51 @@
+﻿@model ShoppingMallAssignmentDB.Models.ShoppingMallModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>CreateOrUpdate</h1>
+
+<h4>ShoppingMallModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateOrUpdate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(model => model.ID)
+            <div class="form-group">
+                <label asp-for="ShoppingMallName" class="control-label"></label>
+                <input asp-for="ShoppingMallName" class="form-control" />
+                <span asp-validation-for="ShoppingMallName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShoppingMallCity" class="control-label"></label>
+                <input asp-for="ShoppingMallCity" class="form-control" />
+                <span asp-validation-for="ShoppingMallCity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShoppingMallState" class="control-label"></label>
+                <input asp-for="ShoppingMallState" class="form-control" />
+                <span asp-validation-for="ShoppingMallState" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YearBuilt" class="control-label"></label>
+                <input asp-for="YearBuilt" class="form-control" />
+                <span asp-validation-for="YearBuilt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="_PartialIndex">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

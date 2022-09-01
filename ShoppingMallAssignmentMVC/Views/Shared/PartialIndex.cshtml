@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ShoppingMallAssignmentMVC.Models.ShoppingMallModel>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table table-steelblue">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ShoppingMallName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShoppingMallCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShoppingMallState)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearBuilt)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShoppingMallName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShoppingMallCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShoppingMallState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearBuilt)
+            </td>
+            <td>
+                    <a href="@Url.Action("Edit", new{item.ID, item.ShoppingMallName, item.ShoppingMallCity, item.ShoppingMallState, item.YearBuilt})" class="btn btn-success">Edit</a> |
+                    <a href="@Url.Action("Delete", new{item.ID})" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

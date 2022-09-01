@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ShoppingMallAssignmentMVC.Models.AdminModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Operators List</h1>
+
+<table class="table table-steelblue">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PanNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsApproved)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PanNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsApproved)
+            </td>
+            <td>
+                     <a href="@Url.Action("Approve", new{item.Id, item.PanNumber, item.Email,item.RoleName,item.Status})" onclick="ChangeUserStatus(@item.Id,true)" class="btn btn-success">Approve</a>
+                     <a href="@Url.Action("Reject", new{item.Id, item.PanNumber,item.Email,item.RoleName,item.Status})" onclick="ChangeUserStatus(@item.Id,false)" class="btn btn-danger">Reject</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    function ChangeUserStatus(id, isApproved) {
+        debugger;
+        var dataObj = {
+            id: id,
+            isApproved: isApproved,
+            email: '',
+            panNo: '',
+            status: 'Pending',
+        };
+        if (confirm(" Hey Admin Are you sure want to continue?")) {
+            $.ajax({
+                method: "GET",
+                url: "" + id + "&isApprove=" + isApproved,
+                data: dataObj,
+                success: function(response) {
+                    location.reload()
+                    console.log(response)
+                },
+                failure: function(response) {
+                     alert(response.responseText);
+                },
+                error: function(response) {
+                     alert(response.responseText);
+                    location.reload()
+                }
+            });
+        }
+
+    }
+</script>
+

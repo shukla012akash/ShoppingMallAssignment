@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="text-center">
+    <h1 class="display-4">Welcome Shopping Mall</h1>
+     <a><img src="~/Mall.jpg" alt="" height="500" width="800" ></a>
+    </div>
+    
+  
+@if(TempData["Message"] == "X")
+{
+    <h1>Duplicate Email Not Allowed</h1>
+}
